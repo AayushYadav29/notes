@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"/>
+<title>Unit 4 – Spatial Analysis</title>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+.u4-badge { background: rgba(245,158,11,0.15); color: var(--a4); }
+.u4-h1 { background: linear-gradient(135deg,#fff,var(--a4)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.u4-icon { background: rgba(245,158,11,0.12); }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="index.html">🏠 Home</a>
+  <span class="divider">/</span>
+  <span class="current">Unit 4</span>
+</div>
+
+<div class="unit-hero">
+  <span class="unit-badge u4-badge">Unit 4 · Spatial Analysis</span>
+  <h1 class="u4-h1">Spatial Analysis</h1>
+  <p>Analytical Functions, Vector/Raster Overlay, Classification, Neighborhood, Network, Error Propagation</p>
+</div>
+
+<!-- ─── Analytical Functions ─── -->
+<div class="section-label">Analytical Functions</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u4-icon">🔭</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q4a · Apr'25 Q4a · Nov'25 Q4d</div>
+      <div class="q-title">GIS mein analytical functions ki 4 classifications kya hain? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <p><b>4 Classifications:</b></p>
+    <ul>
+      <li><b>1. Measurements on Vector Data</b> — Length, Area, Perimeter, Distance between features calculate karna</li>
+      <li><b>2. Query Functions</b> — Attribute ya spatial queries: "kaunse areas flood-prone hain?"</li>
+      <li><b>3. Overlay Functions</b> — Do ya zyada layers combine karna — Union, Intersect, Clip</li>
+      <li><b>4. Neighborhood Functions</b> — Ek feature ke aas-paas ka analysis — Buffer, proximity</li>
+    </ul>
+    <div class="eg">Swiggy delivery zone: Buffer (2km) = Neighborhood. Road length = Measurement. "Show restaurants open now" = Query. Road + Area overlay = Overlay function.</div>
+    <div class="tip">Nov'25 Q4d = "Measurements on Vector data" — Length, Area, Perimeter, Distance, Centroid — ye sab measurements hain.</div>
+  </div>
+</div>
+
+<!-- ─── Neighborhood Functions ─── -->
+<div class="section-label">Neighborhood Functions</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u4-icon">📡</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q4a · Apr'23 Q4a · Nov'25 Q4b</div>
+      <div class="q-title">Neighborhood functions kya hain? Koi 4 explain karo. <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Neighborhood Functions</b>Ek feature ke surrounding area (neighborhood) ko analyze karne ke functions.</div>
+    <ul>
+      <li><b>Buffer</b> — Feature ke around ek zone banana. E.g. School ke 500m buffer = no commercial zone.</li>
+      <li><b>Thiessen Polygons (Voronoi)</b> — Har point ke liye nearest area define karna. E.g. Nearest hospital zone.</li>
+      <li><b>Interpolation</b> — Neighboring points se unknown values estimate. E.g. Rainfall map banana.</li>
+      <li><b>Focal Statistics</b> — Moving window se each cell ki surrounding cells ka avg/max/min. E.g. Elevation smoothing.</li>
+      <li><b>Slope/Aspect</b> — Terrain ke neighbors se slope aur direction calculate.</li>
+    </ul>
+    <div class="eg">Jio tower 3km signal range → Buffer = 3km circle. Us zone mein kaun aata hai = neighborhood analysis!</div>
+  </div>
+</div>
+
+<!-- ─── Classification ─── -->
+<div class="section-label">Data Classification</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u4-icon">📊</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q4b · Apr'23 Q4c · Apr'25 Q4d · Nov'25 Q4e</div>
+      <div class="q-title">Automatic classification ke 2 main techniques kya hain? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Classification</b>Data ko meaningful groups/classes mein divide karna — map pe different colors se dikhane ke liye.</div>
+    <p><b>2 Main Types:</b></p>
+    <ul>
+      <li><b>User Controlled</b> — User manually class boundaries set karta hai. E.g. "0-25 = Low, 25-50 = Medium, 50+ = High rainfall"</li>
+      <li><b>Automatic Classification</b> — Software khud decide karta hai:</li>
+    </ul>
+    <p><b>Automatic Classification ke 2 Techniques:</b></p>
+    <ul>
+      <li>
+        <b>Equal Interval</b> — Data range ko equal parts mein divide karo.<br/>
+        <span style="color:var(--muted);font-size:12px;">Data: 0–100, 4 classes → 0-25, 25-50, 50-75, 75-100</span>
+      </li>
+      <li>
+        <b>Natural Breaks (Jenks)</b> — Data mein natural clusters dhundho aur wahan break karo.<br/>
+        <span style="color:var(--muted);font-size:12px;">Data: 1,2,3,20,21,22,80,81 → Breaks at 3|20 and 22|80</span>
+      </li>
+    </ul>
+    <div class="eg">Rainfall map: Equal interval = mechanical division. Natural Breaks = actually where rainfall "jumps" — zyada meaningful!</div>
+    <div class="tip">Other methods: Quantile (equal number of features per class), Standard Deviation (statistical approach).</div>
+  </div>
+</div>
+
+<!-- ─── Vector Overlay ─── -->
+<div class="section-label">Overlay Operations</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u4-icon">🔀</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q4c · Nov'19 Q4c · Apr'23 Q4b · Apr'25 Q4b · Nov'25 Q4f</div>
+      <div class="q-title">Vector overlay operations kya hain? Diagram ke saath explain karo. <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Vector Overlay</b>Do ya zyada vector layers combine karna — new layer banana jisme dono layers ki information ho.</div>
+    <div class="code">Layer A (Flood Zone):    Layer B (Agricultural Land):
+  ┌──────┐                   ┌──────┐
+  │      │                   │      │
+  │  A   │    OVERLAY    →   │ A∩B  │
+  └──────┘                   └──────┘
+                      (Flood prone farmland)</div>
+    <p><b>Vector Overlay Operations:</b></p>
+    <ul>
+      <li><b>Union (A ∪ B)</b> — Dono layers ka combined result (all features from both)</li>
+      <li><b>Intersect (A ∩ B)</b> — Sirf overlap wala area (common features)</li>
+      <li><b>Clip</b> — Layer A ko Layer B se cut karo (cookie cutter)</li>
+      <li><b>Erase/Difference</b> — Layer B wala area Layer A se remove karo</li>
+      <li><b>Identity</b> — Layer A features + jo B se overlap kare unke attributes add</li>
+    </ul>
+    <div class="eg">Flood zone layer + Agricultural land layer → Intersect → "Kaunsi farmland flood zone mein hai?" — disaster management ke liye zaroori!</div>
+  </div>
+</div>
+
+<!-- ─── Raster Overlay ─── -->
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u4-icon">🗂️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q4d · Nov'19 Q4d · Apr'23 Q4d · Apr'25 Q4c · Nov'25 Q4f</div>
+      <div class="q-title">Raster Overlay operations kaise karte hain? Decision table example. <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Raster Overlay</b>Do raster grids ke corresponding cells pe math operations karna — add, subtract, AND, OR, CON.</div>
+
+    <p><b>Apr'23 Q4d — Groundwater Level 2025:</b></p>
+    <div class="code">R1 (Current Groundwater Level):
+3  6  8
+2  7  5
+4  9  1
+
+Formula: R2 = CON(R1 > 5, 0)
+Meaning: Jahan R1 > 5, wahan R2 = 0, else unchanged
+
+R2 Result:
+3  0  0
+2  0  0
+4  0  1</div>
+
+    <p><b>Apr'25 Q4c — CON with AND:</b></p>
+    <div class="code">A (Land Use):         B (Rainfall mm):
+F  F  A               5  8  3
+A  F  F               7  6  9
+
+Formula: C = CON((A:'F') AND (B:7), 9, 0)
+Meaning: Jahan A=Forest AND B=7, wahan C=9, else C=0
+
+C Result:
+0  0  0
+9  0  0</div>
+
+    <p><b>Nov'19 Q4d — Boolean Operations:</b></p>
+    <div class="code">R4 = R1 AND (R2 OR R3)
+→ Pehle R2 OR R3 calculate karo
+→ Phir result ko R1 se AND karo
+→ Ek cell pe: 1 AND (0 OR 1) = 1 AND 1 = 1</div>
+
+    <div class="tip">CON = Conditional function. CON(condition, value_if_true, value_if_false). Decision table mein conditions aur results clearly write karo!</div>
+  </div>
+</div>
+
+<!-- ─── Network Analysis ─── -->
+<div class="section-label">Network Analysis</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u4-icon">🕸️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'23 Q4e · Apr'25 Q4e · Nov'25 Q4a</div>
+      <div class="q-title">Network Analysis kya hai? Iske types explain karo. <span class="freq med">📌 Med</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Network Analysis</b>Connected lines (roads, pipes, rivers) pe based analysis. Nodes (intersections) aur Edges (roads) se network banta hai.</div>
+    <p><b>Types:</b></p>
+    <ul>
+      <li><b>Shortest Path</b> — A to B ka sabse chhota route. E.g. Google Maps navigation.</li>
+      <li><b>Travelling Salesman Problem</b> — Multiple stops ke saath optimal route. E.g. Courier delivery.</li>
+      <li><b>Service Area</b> — X minutes/km mein kahan pahuncha ja sakta hai. E.g. Ambulance 5-min coverage area.</li>
+      <li><b>Closest Facility</b> — Nearest hospital, police station dhundhna.</li>
+      <li><b>Flow Analysis</b> — Pipe/river network mein flow direction aur capacity.</li>
+    </ul>
+    <div class="eg">Ola/Uber = Network Analysis! Driver ka shortest path + traffic = real-time network analysis. Zomato delivery optimization bhi same.</div>
+  </div>
+</div>
+
+<!-- ─── Error Propagation ─── -->
+<div class="section-label">Error & Application Models</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u4-icon">⚠️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q4f · Apr'23 Q4f · Nov'25 Q4c</div>
+      <div class="q-title">GIS mein error kaise propagate hoti hai? <span class="freq med">📌 Med</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Error Propagation</b>Ek step ki error agle steps mein transfer aur accumulate hoti hai — final result mein combined error aati hai.</div>
+    <p><b>Error Sources:</b></p>
+    <ul>
+      <li><b>Input Errors</b> — GPS inaccuracy (±5m), digitization mistakes</li>
+      <li><b>Processing Errors</b> — Projection conversion, rounding</li>
+      <li><b>Model Errors</b> — Simplified model real world ko perfectly represent nahi karta</li>
+    </ul>
+    <div class="code">Error Chain Example:
+GPS Error (±2m)
+    ↓
+Digitization Error (±3m)
+    ↓
+Overlay Operation
+    ↓
+Combined Error = √(2² + 3²) = √13 ≈ 3.6m
+
+Final map mein ±3.6m tak error ho sakti hai!</div>
+    <div class="eg">Flood zone map: GPS ±2m + Digitization ±3m + Projection ±1m → Final flood boundary ±4m galat ho sakti hai → wrong evacuation decisions!</div>
+    <div class="tip">Error propagation diagram mein ek chain dikhao: Source → Processing → Analysis → Output. Har step pe error add hoti hai.</div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u4-icon">🏗️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q4e · Apr'25 Q4f</div>
+      <div class="q-title">GIS Application Models ki 5 characteristics kya hain?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <p><b>5 Characteristics of GIS-based Application Models:</b></p>
+    <ul>
+      <li><b>Spatial Orientation</b> — Model location-based data use karta hai</li>
+      <li><b>Integration</b> — Multiple data sources combine karta hai</li>
+      <li><b>Dynamic</b> — Time ke saath update hota hai</li>
+      <li><b>Scale Dependent</b> — Different zoom levels pe different detail</li>
+      <li><b>Decision Support</b> — Policy aur planning decisions ke liye output deta hai</li>
+    </ul>
+    <div class="eg">NDMA (National Disaster Management Authority) ka flood model: Location-based (spatial) + multiple data sources (integration) + real-time updates (dynamic) = GIS application model.</div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u4-icon">📋</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'25 Q4e</div>
+      <div class="q-title">Advanced computations on continuous fields ke 5 examples.</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <ul>
+      <li><b>Slope & Aspect</b> — Terrain elevation field se slope direction/steepness calculate</li>
+      <li><b>Viewshed Analysis</b> — Elevation field se — kaunse areas ek point se visible hain?</li>
+      <li><b>Watershed Delineation</b> — Water flow direction field se drainage basin map karna</li>
+      <li><b>Solar Radiation</b> — Elevation + sun angle se each location par sunlight calculate</li>
+      <li><b>Pollution Dispersion</b> — Wind field + emission source se pollution spread model</li>
+    </ul>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <a href="index.html" class="bn-btn home"><span>🏠</span></a>
+  <a href="unit1.html" class="bn-btn"><span>🌍</span>Unit 1</a>
+  <a href="unit2.html" class="bn-btn"><span>🗄️</span>Unit 2</a>
+  <a href="unit3.html" class="bn-btn"><span>🛰️</span>Unit 3</a>
+  <a href="unit5.html" class="bn-btn"><span>🗺️</span>Unit 5</a>
+</div>
+
+<script>
+function toggle(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>

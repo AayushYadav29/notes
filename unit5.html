@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"/>
+<title>Unit 5 – Visualization & Cartography</title>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+.u5-badge { background: rgba(239,68,68,0.15); color: var(--a5); }
+.u5-h1 { background: linear-gradient(135deg,#fff,var(--a5)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.u5-icon { background: rgba(239,68,68,0.12); }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="index.html">🏠 Home</a>
+  <span class="divider">/</span>
+  <span class="current">Unit 5</span>
+</div>
+
+<div class="unit-hero">
+  <span class="unit-badge u5-badge">Unit 5 · Visualization</span>
+  <h1 class="u5-h1">Visualization & Cartography</h1>
+  <p>Bertin's Visual Variables, Visualization Process, Terrain Mapping, Temporal Cartography, Map Dissemination</p>
+</div>
+
+<!-- ─── Map & GIS ─── -->
+<div class="section-label">Map & GIS Relationship</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u5-icon">🗺️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q5a</div>
+      <div class="q-title">Map aur GIS ke beech kya relationship hai?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <ul>
+      <li><b>Map</b> — Static, printed/displayed spatial representation. Input bhi hai GIS ka, output bhi.</li>
+      <li><b>GIS</b> — Dynamic system — data analyze + process + maps create karta hai</li>
+    </ul>
+    <div class="tbl"><table>
+      <tr><th>Feature</th><th>Map</th><th>GIS</th></tr>
+      <tr><td>Nature</td><td>Static</td><td>Dynamic</td></tr>
+      <tr><td>Analysis</td><td>Not possible</td><td>Full analysis possible</td></tr>
+      <tr><td>Update</td><td>Reprint karna padta hai</td><td>Real-time update</td></tr>
+      <tr><td>Query</td><td>Cannot query</td><td>SQL queries possible</td></tr>
+    </table></div>
+    <div class="eg">Paper map = static photo. GIS = live camera jisme zoom in/out, filter, analysis sab ho sake.</div>
+  </div>
+</div>
+
+<!-- ─── Visualization Process ─── -->
+<div class="section-label">Visualization</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u5-icon">👁️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q5b · Nov'19 Q5b · Apr'23 Q5a · Apr'25 Q5a · Nov'25 Q5b</div>
+      <div class="q-title">GIS mein Visualization process kya hai? Diagram ke saath explain karo. <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Visualization</b>Data ko visual form (maps, charts, 3D models) mein represent karna taaki patterns aur insights clearly samajh mein aayein.</div>
+    <div class="code">Visualization Process:
+
+Real World Data
+      ↓
+Data Collection & Storage
+      ↓
+Data Processing & Analysis
+      ↓
+Visual Representation (Map/Chart/3D)
+      ↓
+User Perception & Understanding
+      ↓
+Decision Making</div>
+    <p><b>Visualization Strategy mein 3 Questions:</b></p>
+    <ul>
+      <li><b>What</b> — Kya dikhana hai? (Data/phenomenon)</li>
+      <li><b>Who</b> — Kisko dikhana hai? (Audience)</li>
+      <li><b>How</b> — Kaise dikhana hai? (Map type, colors, symbols)</li>
+    </ul>
+    <div class="tip">"How do I say WHAT to WHOM and is it effective?" — Yahi GIS visualization ka core question hai!</div>
+  </div>
+</div>
+
+<!-- ─── Say What to Whom ─── -->
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u5-icon">💬</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q5a · Apr'23 Q5c · Apr'25 Q5b · Nov'25 Q5a</div>
+      <div class="q-title">"How do I say WHAT to WHOM and is it Effective?" — GIS context mein explain karo. <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <p>Yeh question GIS visualization ki effectiveness ke baare mein hai:</p>
+    <ul>
+      <li><b>HOW (Kaise)</b> — Map type choose karo: Choropleth, Dot map, Flow map? Colors? Symbols?</li>
+      <li><b>WHAT (Kya)</b> — Kaunsa data communicate karna hai? Population density? Temperature? Crime rate?</li>
+      <li><b>WHOM (Kisko)</b> — Audience kaun hai? Expert GIS users? General public? Policymakers?</li>
+      <li><b>EFFECTIVE (Kitna asar)</b> — Kya audience message clearly samajh gayi?</li>
+    </ul>
+    <div class="eg">
+      WHAT: Mumbai flood zones. WHOM: General public (not experts). HOW: Simple color map — Red=High risk, Yellow=Medium, Green=Safe. EFFECTIVE: Public clearly samajhe evacuation zones → effective communication!<br/><br/>
+      Agar same map expert GIS engineers ko diya → unhe detailed data, contour lines, coordinates chahiye → different "HOW"!
+    </div>
+  </div>
+</div>
+
+<!-- ─── Bertin's Visual Variables ─── -->
+<div class="section-label">Bertin's Visual Variables</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u5-icon">🎨</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q5d · Nov'19 Q5d · Apr'23 Q5d · Apr'25 Q5c · Nov'25 —</div>
+      <div class="q-title">Bertin's 6 categories of Visual Variables kya hain? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Jacques Bertin</b> (French cartographer) ne 1967 mein 6 visual variables define kiye — maps mein data kaise encode karein.</div>
+    <div class="tbl"><table>
+      <tr><th>#</th><th>Variable</th><th>Kya hai?</th><th>Example</th></tr>
+      <tr><td>1</td><td><b>Size</b></td><td>Feature ka size vary karo</td><td>Bade circle = badi population</td></tr>
+      <tr><td>2</td><td><b>Shape</b></td><td>Feature ka shape change karo</td><td>★ = Capital, ● = City, ▲ = Mountain</td></tr>
+      <tr><td>3</td><td><b>Hue (Color)</b></td><td>Alag colors = alag categories</td><td>Blue = Water, Green = Forest</td></tr>
+      <tr><td>4</td><td><b>Value (Lightness)</b></td><td>Color ki darkness/lightness vary karo</td><td>Light pink = Low density, Dark red = High density</td></tr>
+      <tr><td>5</td><td><b>Texture</b></td><td>Pattern/fill vary karo</td><td>Dotted = Grassland, Hatched = Urban</td></tr>
+      <tr><td>6</td><td><b>Orientation</b></td><td>Symbol ka angle change karo</td><td>→ Wind direction arrows</td></tr>
+    </table></div>
+    <div class="eg">India rainfall map: Hue = Blue. Value = Light blue (low rain) → Dark blue (heavy rain) → Maharashtra mein Western Ghats = darkest blue!</div>
+    <div class="tip">Remember: "SS HV TO" — Size, Shape, Hue, Value, Texture, Orientation — 6 variables!</div>
+  </div>
+</div>
+
+<!-- ─── Terrain & Elevation ─── -->
+<div class="section-label">Terrain Mapping</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u5-icon">⛰️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q5c · Nov'25 Q5e</div>
+      <div class="q-title">Terrain Elevation kaise map karte hain?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <p><b>Methods to Map Terrain Elevation:</b></p>
+    <ul>
+      <li><b>Contour Lines</b> — Same elevation ke points ko connect karna. Closely spaced = steep. Far apart = gentle slope.</li>
+      <li><b>DEM (Digital Elevation Model)</b> — Raster grid jisme har cell = elevation value</li>
+      <li><b>TIN (Triangulated Irregular Network)</b> — Irregular triangles se 3D surface banana</li>
+      <li><b>Hillshading</b> — Light source se shadow effect → 3D appearance on 2D map</li>
+      <li><b>Hypsometric Tints</b> — Elevation bands ko colors se represent karna (green=low, brown=high)</li>
+    </ul>
+    <div class="eg">Google Maps ka terrain view = DEM + Hillshading + Contours ka combination! Yeh sab methods ek saath use hote hain.</div>
+    <div class="tip">Topographic Maps = terrain + roads + settlements + water bodies. Thematic Maps = sirf ek specific theme (rainfall, population).</div>
+  </div>
+</div>
+
+<!-- ─── Temporal Cartography ─── -->
+<div class="section-label">Temporal Cartography & Data Types</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u5-icon">⏱️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q5e · Nov'19 Q5e · Apr'25 Q5e · Nov'25 Q5e</div>
+      <div class="q-title">3 Temporal cartographic techniques mein kya farq hai? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="tbl"><table>
+      <tr><th>Technique</th><th>Kya hai?</th><th>Example</th></tr>
+      <tr><td><b>Single Map</b></td><td>Ek map pe time info symbol se dikhate hain</td><td>Arrows show Napoleon's army movement on one map</td></tr>
+      <tr><td><b>Map Series</b></td><td>Multiple maps — har time period ka alag map</td><td>India GDP map: 2000, 2010, 2020, 2023</td></tr>
+      <tr><td><b>Animated Map</b></td><td>Maps ka sequence fast play karo — animation</td><td>Monsoon rainfall animated GIF — June to Sept</td></tr>
+    </table></div>
+    <div class="eg">COVID spread map: Single map = symbols show spread direction. Map series = month-wise maps. Animated = automatic slideshow of spread! Animated sabse effective for time series.</div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u5-icon">📅</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'23 Q5e · Nov'25 Q5e</div>
+      <div class="q-title">Time series mapping kaise karte hain? Example ke saath explain karo.</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Time Series Mapping</b>Ek phenomenon ko multiple time points pe map karna — change aur trends visualize karne ke liye.</div>
+    <p><b>Steps:</b></p>
+    <ul>
+      <li>Data collect karo for different time periods</li>
+      <li>Same map template use karo sab ke liye (consistent symbology)</li>
+      <li>Visual variable — color value — ko time change se link karo</li>
+      <li>Comparison easy ho iske liye side-by-side ya animation use karo</li>
+    </ul>
+    <div class="eg">Mumbai Urban Growth: 1990 map (small urban area) → 2000 → 2010 → 2023 (massive urban sprawl). Ek time series jisme dekhte hain kaise city expand hui. Slider animation = best way to show this!</div>
+  </div>
+</div>
+
+<!-- ─── Qualitative & Quantitative Data ─── -->
+<div class="section-label">Mapping Data Types</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u5-icon">📈</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q5c · Apr'25 Q5d · Nov'25 Q5c-d</div>
+      <div class="q-title">Qualitative aur Quantitative data kaise map karte hain?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <p><b>Qualitative Data (Categories — no numbers):</b></p>
+    <ul>
+      <li>Use <b>Hue (Color)</b> to differentiate — blue, red, green alag categories</li>
+      <li>Use <b>Shape</b> — different symbols for different types</li>
+      <li>E.g. Land use map: Blue=Water, Green=Forest, Grey=Urban, Yellow=Agriculture</li>
+    </ul>
+    <p><b>Quantitative Data (Numbers — measurable):</b></p>
+    <ul>
+      <li>Use <b>Size</b> — Proportional circles (bigger = larger value)</li>
+      <li>Use <b>Value (lightness)</b> — Light to dark color ramp</li>
+      <li>Choropleth map: Areas filled with color intensity by data value</li>
+      <li>E.g. Population density: Light yellow = sparse, Dark red = dense</li>
+    </ul>
+    <div class="eg">India census map — States ke andar population density: Light = less people (Arunachal), Dark red = dense (UP, Bihar). Yeh quantitative mapping hai!</div>
+  </div>
+</div>
+
+<!-- ─── Terms ─── -->
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u5-icon">📖</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'23 Q5b · Nov'25 Q5d</div>
+      <div class="q-title">Symbology, Cartography, Map Legend, Pixel, Voxel define karo.</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <ul>
+      <li><b>Symbology</b> — Map pe features ko represent karne ke symbols, colors aur styles ka system. E.g. ★ = capital city.</li>
+      <li><b>Cartography</b> — Maps banana aur design karne ki art aur science.</li>
+      <li><b>Map Legend</b> — Map pe use hue symbols aur colors ka explanation box. "Key" bhi kehte hain.</li>
+      <li><b>Pixel</b> — Picture Element — 2D raster image ka sabse chhota unit. Ek cell = ek pixel.</li>
+      <li><b>Voxel</b> — Volume Element — 3D space mein pixel. 3D GIS data ka smallest unit.</li>
+    </ul>
+    <div class="eg">Pixel = Photo ka ek tiny dot. Voxel = 3D CT scan ka ek tiny cube. Pixel 2D hai, Voxel 3D hai!</div>
+  </div>
+</div>
+
+<!-- ─── Map Cosmetics & Dissemination ─── -->
+<div class="section-label">Map Cosmetics & Dissemination</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u5-icon">✨</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q5f</div>
+      <div class="q-title">Map Cosmetics kya hai?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Map Cosmetics</b>Map ko visually appealing aur professionally presentable banane ke elements.</div>
+    <p><b>Key Cosmetic Elements:</b></p>
+    <ul>
+      <li><b>Title</b> — Map ka naam: "India Population Density 2023"</li>
+      <li><b>Legend</b> — Symbols aur colors ka explanation</li>
+      <li><b>North Arrow</b> — Direction indicator</li>
+      <li><b>Scale Bar</b> — Real-world distance reference</li>
+      <li><b>Neat Line</b> — Map border/frame</li>
+      <li><b>Graticule</b> — Lat/Long grid lines</li>
+      <li><b>Inset Map</b> — Main map ki location dikhane ke liye chhota context map</li>
+      <li><b>Data Source</b> — "Source: Census of India 2023"</li>
+    </ul>
+    <div class="tip">Map cosmetics = map ki "packaging". Bina cosmetics ke map incomplete lagta hai!</div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u5-icon">📤</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q5f · Apr'23 Q5f · Apr'25 Q5f · Nov'25 Q5f</div>
+      <div class="q-title">Map Dissemination kya hai? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Map Dissemination</b>Maps ko target audience tak pahunchana — appropriate medium aur format choose karna.</div>
+    <p><b>Dissemination Methods:</b></p>
+    <ul>
+      <li><b>Print</b> — Paper maps, atlases, newspapers (offline, no internet needed)</li>
+      <li><b>Digital Files</b> — PDF, PNG, GeoTIFF — email/download se share</li>
+      <li><b>Web Maps</b> — Google Maps, Leaflet, ArcGIS Online — interactive, always updated</li>
+      <li><b>Mobile Apps</b> — Ola, Google Maps app — location-aware</li>
+      <li><b>GIS Portals</b> — ISRO Bhuvan, data.gov.in — public data sharing</li>
+    </ul>
+    <p><b>Factors to consider:</b></p>
+    <ul>
+      <li>Audience ki technical capability</li>
+      <li>Internet availability</li>
+      <li>Interactivity ki zaroorat</li>
+      <li>Update frequency</li>
+    </ul>
+    <div class="eg">Flood warning map: Web map + Mobile notification = fastest dissemination for disaster response. Print map = backup for areas with no internet.</div>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <a href="index.html" class="bn-btn home"><span>🏠</span></a>
+  <a href="unit1.html" class="bn-btn"><span>🌍</span>Unit 1</a>
+  <a href="unit2.html" class="bn-btn"><span>🗄️</span>Unit 2</a>
+  <a href="unit3.html" class="bn-btn"><span>🛰️</span>Unit 3</a>
+  <a href="unit4.html" class="bn-btn"><span>🔬</span>Unit 4</a>
+</div>
+
+<script>
+function toggle(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>

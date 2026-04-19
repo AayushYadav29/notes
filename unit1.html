@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"/>
+<title>Unit 1 – Introduction to GIS</title>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+.u1-badge { background: rgba(79,141,255,0.15); color: var(--a1); }
+.u1-h1 { background: linear-gradient(135deg,#fff,var(--a1)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.u1-icon { background: rgba(79,141,255,0.12); }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="index.html">🏠 Home</a>
+  <span class="divider">/</span>
+  <span class="current">Unit 1</span>
+</div>
+
+<div class="unit-hero">
+  <span class="unit-badge u1-badge">Unit 1 · Introduction</span>
+  <h1 class="u1-h1">Introduction to GIS</h1>
+  <p>GIS, GIScience, Models, Geographic Objects, Topology, Tessellations, Temporal Dimension</p>
+</div>
+
+<!-- ─── GIS Definition ─── -->
+<div class="section-label">GIS Basics</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u1-icon">🌍</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q1a · Apr'23 Q2a · Nov'25 Q1f</div>
+      <div class="q-title">GIS kya hai? Iske capabilities kya hain? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Definition</b>GIS (Geographic Information System) = Computer system jo location-based data ko collect, store, analyze aur display karta hai.</div>
+    <p><b>4 Capabilities:</b></p>
+    <ul>
+      <li><b>Data Capture</b> — GPS, satellite se data lena</li>
+      <li><b>Data Storage</b> — Database mein save karna</li>
+      <li><b>Data Analysis</b> — Patterns dhundhna, queries run karna</li>
+      <li><b>Data Visualization</b> — Maps aur charts mein dikhana</li>
+    </ul>
+    <div class="eg">Google Maps tumhara location leta hai → route analyze karta hai → screen pe dikhata hai. Yahi GIS ka kaam hai!</div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u1-icon">🔬</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q1b · Apr'23 Q1a · Apr'25 Q1a</div>
+      <div class="q-title">GISystem, GIScience aur GIS Application mein farq? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <ul>
+      <li><b>GI System</b> — Tool: Hardware + Software + Data + People ka combination</li>
+      <li><b>GI Science</b> — Theory: GIS ke peeche ke concepts aur algorithms ka study</li>
+      <li><b>GIS Application</b> — Real use: Zomato delivery routing, Flood management</li>
+    </ul>
+    <div class="eg">Computer = GISystem · Computer Science = GIScience · Zomato App = GIS Application</div>
+    <div class="tip">Teeno alag-alag hain — System (tool), Science (theory), Application (use case).</div>
+  </div>
+</div>
+
+<!-- ─── Models ─── -->
+<div class="section-label">Models & Geographic Phenomena</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u1-icon">🧩</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q1c · Apr'23 Q1c · Apr'25 Q1c · Nov'25 Q1e</div>
+      <div class="q-title">Model kya hai? GIS mein modelling kyun zaroori hai? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Model</b>Real world ka simplified representation — taaki analyze aur samjha ja sake.</div>
+    <p><b>3 Types:</b></p>
+    <ul>
+      <li><b>Conceptual</b> — Idea/design: kaunsa data chahiye?</li>
+      <li><b>Logical</b> — Structure: data kaise organize hoga?</li>
+      <li><b>Physical</b> — Actual database on computer</li>
+    </ul>
+    <p><b>Kyun useful hai?</b></p>
+    <ul>
+      <li>Real world complex hai — model simple banata hai</li>
+      <li>Bina field experiment ke analysis possible</li>
+      <li>Future predictions possible (2030 mein flood zone kahan?)</li>
+    </ul>
+    <div class="eg">Google Maps pe roads = model. Real world mein hazaaron details hain, map sirf zaroori cheezein dikhata hai.</div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u1-icon">📍</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q1d · Nov'19 Q1d · Apr'25 Q1d · Nov'25 Q1b</div>
+      <div class="q-title">Geographic Field vs Geographic Object. Object ke 4 parameters? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Geographic Field</b>Continuously exist karne wali phenomenon — har location pe ek value. E.g. Temperature, Rainfall.</div>
+    <div class="def"><b>Geographic Object</b>Discrete (alag) entity with specific location. E.g. Roads, Buildings, Cities.</div>
+    <p><b>4 Parameters of Geographic Object:</b></p>
+    <ul>
+      <li><b>Position</b> — Kahan hai? (Lat/Long)</li>
+      <li><b>Shape</b> — Kaisa dikhta hai? (Point/Line/Polygon)</li>
+      <li><b>Size</b> — Kitna bada? (Area, Length)</li>
+      <li><b>Attributes</b> — Extra info (Name, Population, Type)</li>
+    </ul>
+    <div class="eg">Mumbai: Position=19.07°N 72.87°E, Shape=Polygon, Size=603 km², Attributes: Population 2 crore.</div>
+    <p><b>Field ke Data Types:</b></p>
+    <ul>
+      <li><b>Nominal</b> — Categories, no order (Forest/Water/Urban)</li>
+      <li><b>Ordinal</b> — Ordered categories (Poor/Good/Excellent)</li>
+      <li><b>Interval</b> — Numbers, no true zero (Temperature °C)</li>
+      <li><b>Ratio</b> — Numbers with true zero (Distance, Weight)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u1-icon">🌐</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'23 Q1e · Apr'25 Q1e · Nov'25 —</div>
+      <div class="q-title">Mathematical properties of geometric space kya hain?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <ul>
+      <li><b>Dimension</b> — 0D=Point, 1D=Line, 2D=Area, 3D=Volume</li>
+      <li><b>Continuity</b> — Space mein koi gaps nahi hote</li>
+      <li><b>Compactness</b> — Closed aur bounded regions</li>
+      <li><b>Connectedness</b> — Parts ek doosre se connected hain</li>
+    </ul>
+    <div class="tip">Ye properties topology se related hain. Diagram mein Point→Line→Polygon→3D solid dikhao.</div>
+  </div>
+</div>
+
+<!-- ─── Topology ─── -->
+<div class="section-label">Topology & Spatial Relationships</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u1-icon">🔗</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q1e</div>
+      <div class="q-title">Topology aur spatial relationships kya hain?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Topology</b>Features ke beech spatial relationships define karta hai — Shape/Size change hone pe bhi relationships sahi rehti hain.</div>
+    <p><b>Key Relationships:</b></p>
+    <ul>
+      <li><b>Connectivity</b> — Roads junction pe milti hain</li>
+      <li><b>Adjacency</b> — Maharashtra-Karnataka border share karte hain</li>
+      <li><b>Containment</b> — City is inside a State</li>
+      <li><b>Overlap</b> — Features partially over each other</li>
+    </ul>
+    <ul>
+      <li>Routing/Navigation ke liye zaroori</li>
+      <li>Data errors (gaps/overlaps) detect karna</li>
+      <li>Network analysis (pipe/road networks)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ─── Temporal Dimension ─── -->
+<div class="section-label">Temporal Dimension</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u1-icon">⏰</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q1f · Apr'23 Q1f · Apr'25 Q1f · Nov'19 Q1c · Nov'25 Q1c</div>
+      <div class="q-title">Temporal dimension kya hai? Time in GIS kaise represent karte hain? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Temporal Dimension</b>GIS mein location (where) + attributes (what) + <b>time (when)</b> — data time ke saath kaise change hota hai.</div>
+    <p><b>Time ke Types:</b></p>
+    <ul>
+      <li><b>Time Instant</b> — Ek specific moment: "15 Aug 2023 flood aaya"</li>
+      <li><b>Time Interval</b> — Ek period: "June-Sept monsoon season"</li>
+      <li><b>Valid Time</b> — Real world mein kab hua (building 2005 mein bani)</li>
+      <li><b>Transaction Time</b> — Database mein kab enter hua</li>
+    </ul>
+    <p><b>Spatiotemporal Models:</b></p>
+    <ul>
+      <li><b>Snapshot Model</b> — Har time period ka alag map store karo</li>
+      <li><b>Space-Time Composite</b> — Sirf changes store karo (efficient)</li>
+    </ul>
+    <div class="eg">Mumbai land use 1990 → 2000 → 2010 → 2020 — dekh sakte hain slums kahan se urban area ban gayi. Yahi temporal GIS hai!</div>
+    <div class="tip">Apr'25 Q1b mein El Niño aaya — yeh climate event hai jo Pacific Ocean temperature warm karta hai. GIS mein multiple years ke temperature maps compare karte hain.</div>
+  </div>
+</div>
+
+<!-- ─── Tessellations ─── -->
+<div class="section-label">Tessellations & Quad Tree</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u1-icon">🔲</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q1e-f · Apr'23 Q1d · Nov'25 Q1a</div>
+      <div class="q-title">Regular vs Irregular Tessellations. Quad Tree banao. <span class="freq med">📌 Med</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Tessellation</b>Space ko tiles mein divide karna bina gaps aur overlaps ke. Raster data ka base hai.</div>
+    <ul>
+      <li><b>Regular</b> — Sab tiles same size/shape: squares (pixels/grid), triangles, hexagons</li>
+      <li><b>Irregular</b> — Tiles different size/shape: TIN (terrain ke liye)</li>
+    </ul>
+    <div class="eg">Regular = Chess board. Irregular = India ka political map (sab states alag size ke).</div>
+    <p><b>Quad Tree (4×4 raster example):</b></p>
+    <div class="code">Raster:          Quad Tree:
+F F I I    Root → 4 quadrants
+F F I I      ├─ Top-Left:  all F → Leaf F
+R R F F      ├─ Top-Right: all I → Leaf I
+R R F F      ├─ Bot-Left:  all R → Leaf R
+             └─ Bot-Right: all F → Leaf F</div>
+    <div class="tip">Quad tree mein uniform regions = sirf 1 leaf node = storage efficient!</div>
+  </div>
+</div>
+
+<!-- Geospatial Data & Geoinformation -->
+<div class="section-label">Geospatial Data</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u1-icon">📡</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q1b · Nov'25 Q1d</div>
+      <div class="q-title">Geospatial data, Geoinformation aur Metadata kya hain?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <ul>
+      <li><b>Geospatial Data</b> — Location se related raw facts: coordinates, satellite images, GPS readings</li>
+      <li><b>Geoinformation</b> — Processed geospatial data jisme meaning ho: "Delhi mein kal baarish hogi"</li>
+      <li><b>Metadata</b> — Data ke baare mein data: "Ye map 2020 mein banaya gaya, accuracy ±5m hai"</li>
+    </ul>
+    <p><b>Spatial Data Quality ke key components:</b></p>
+    <ul>
+      <li>Accuracy — Kitna sahi hai?</li>
+      <li>Completeness — Kuch chhoot toh nahi gaya?</li>
+      <li>Consistency — Data mein contradictions toh nahi?</li>
+      <li>Timeliness — Data kitna fresh hai?</li>
+    </ul>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <a href="index.html" class="bn-btn home"><span>🏠</span></a>
+  <a href="unit2.html" class="bn-btn"><span>🗄️</span>Unit 2</a>
+  <a href="unit3.html" class="bn-btn"><span>🛰️</span>Unit 3</a>
+  <a href="unit4.html" class="bn-btn"><span>🔬</span>Unit 4</a>
+  <a href="unit5.html" class="bn-btn"><span>🗺️</span>Unit 5</a>
+</div>
+
+<script>
+function toggle(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>

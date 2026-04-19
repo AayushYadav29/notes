@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"/>
+<title>Unit 3 – Coordinate Systems & GPS</title>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+.u3-badge { background: rgba(16,185,129,0.15); color: var(--a3); }
+.u3-h1 { background: linear-gradient(135deg,#fff,var(--a3)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.u3-icon { background: rgba(16,185,129,0.12); }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="index.html">🏠 Home</a>
+  <span class="divider">/</span>
+  <span class="current">Unit 3</span>
+</div>
+
+<div class="unit-hero">
+  <span class="unit-badge u3-badge">Unit 3 · Coordinates & GPS</span>
+  <h1 class="u3-h1">Coordinate Systems & Data Capture</h1>
+  <p>Map Projections, GPS, Geoid, 2D Coordinates, Trend Surface, RMS, Kriging, Accuracy</p>
+</div>
+
+<!-- ─── Map Projections ─── -->
+<div class="section-label">Map Projections</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u3-icon">🌐</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q3a · Apr'23 Q3c · Apr'25 Q3a · Nov'25 Q3c</div>
+      <div class="q-title">Map Projections ki classifications kya hain? Koi 2 explain karo. <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Map Projection</b>3D Earth ko 2D flat map pe transfer karne ka method. Kuch na kuch distortion hoti hai — area/shape/distance/direction mein se kuch sacrifice hota hai.</div>
+    <div class="eg">Orange peel flat karo — kuch jagah tear aata hai. Yahi projection mein hota hai!</div>
+    <p><b>Classification 1 — By Surface (Developable Surface):</b></p>
+    <div class="tbl"><table>
+      <tr><th>Type</th><th>Surface</th><th>Best For</th></tr>
+      <tr><td><b>Cylindrical</b></td><td>Cylinder</td><td>World maps (Mercator)</td></tr>
+      <tr><td><b>Conical</b></td><td>Cone</td><td>Mid-latitude (India maps)</td></tr>
+      <tr><td><b>Azimuthal</b></td><td>Flat plane</td><td>Polar maps, air routes</td></tr>
+    </table></div>
+    <p><b>Classification 2 — By Properties Preserved:</b></p>
+    <ul>
+      <li><b>Conformal</b> — Shape preserve: Mercator (navigation ke liye)</li>
+      <li><b>Equal Area</b> — Area preserve: Albers (population density maps)</li>
+      <li><b>Equidistant</b> — Distance preserve: Road distance maps</li>
+      <li><b>Azimuthal</b> — Direction preserve: Flight path planning</li>
+    </ul>
+    <div class="tip">Mercator pe Greenland India se bada dikhta hai — lekin actually India 3x bada hai. Distortion ka example!</div>
+  </div>
+</div>
+
+<!-- ─── 2D Coordinate Systems ─── -->
+<div class="section-label">Coordinate Systems</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u3-icon">📐</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q3c · Apr'23 Q3b · Apr'25 Q3b</div>
+      <div class="q-title">2D Geographic Coordinate System explain karo. Cartesian vs Polar compare karo. <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Geographic Coordinate System (GCS)</b>Latitude (φ) + Longitude (λ) se Earth pe kisi bhi location define karta hai.</div>
+    <ul>
+      <li><b>Latitude</b> — Equator se N/S: 0° (Equator) to ±90° (Poles)</li>
+      <li><b>Longitude</b> — Prime Meridian se E/W: 0° to ±180°</li>
+    </ul>
+    <div class="eg">Mumbai: 18°58'N, 72°49'E — Equator se 18°58' North, Greenwich se 72°49' East.</div>
+    <div class="tbl"><table>
+      <tr><th>Feature</th><th>Cartesian (X,Y)</th><th>Polar (r, θ)</th></tr>
+      <tr><td>Representation</td><td>X aur Y distances</td><td>Distance + Angle</td></tr>
+      <tr><td>Best For</td><td>Grid maps, city blocks</td><td>Circular areas, radar coverage</td></tr>
+      <tr><td>Example</td><td>City block layout</td><td>Mobile tower signal area</td></tr>
+    </table></div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u3-icon">🌏</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q3a · Nov'25 Q3b · Apr'25 Q3c</div>
+      <div class="q-title">Geoid, Ellipsoid aur Datum kya hain? Datum Transformation explain karo.</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <ul>
+      <li><b>Geoid</b> — Earth ka actual irregular shape (mean sea level surface). Gravity se influenced. Height measurement ke liye.</li>
+      <li><b>Ellipsoid</b> — Earth ka smooth mathematical model (slightly flattened sphere). GPS ke liye WGS84 standard hai.</li>
+      <li><b>Datum</b> — Ellipsoid + uski Earth ke relative position = coordinate system ka foundation</li>
+    </ul>
+    <div class="eg">Geoid = Bumpy actual Earth. Ellipsoid = Smooth ball (for calculations). WGS84 = GPS wala datum.</div>
+    <p><b>Transformation Types:</b></p>
+    <ul>
+      <li><b>Coordinate Transformation</b> — Same datum pe alag systems (Cartesian ↔ Geographic)</li>
+      <li><b>Datum Transformation</b> — Alag datums ke beech shift (India's old Everest Datum → WGS84)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ─── GPS ─── -->
+<div class="section-label">GPS & Satellite Positioning</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u3-icon">🛰️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q3b · Apr'23 Q3d</div>
+      <div class="q-title">GPS kya hai? Kaise kaam karta hai? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>GPS</b>US Government ka satellite system jo kisi bhi location ki Latitude, Longitude, Altitude precise tarike se deta hai.</div>
+    <p><b>3 Segments:</b></p>
+    <ul>
+      <li><b>Space Segment</b> — 24+ satellites Earth orbit mein (6 planes × 4 satellites)</li>
+      <li><b>Control Segment</b> — Ground stations jo satellites monitor karte hain</li>
+      <li><b>User Segment</b> — Tumhara GPS phone/device</li>
+    </ul>
+    <p><b>Working — Trilateration:</b></p>
+    <ul>
+      <li>Receiver ≥ 3 satellites se signals receive karta hai</li>
+      <li>Signal travel time se distance = Speed of Light × Time</li>
+      <li>3 circles ka intersection = 2D position</li>
+      <li>4th satellite = Altitude + Error correction</li>
+    </ul>
+    <div class="eg">3 satellites se distances: 200km, 250km, 180km → teen circles ka intersection = tumhari exact location!</div>
+    <p><b>GPS Errors (Space Segment):</b></p>
+    <ul>
+      <li><b>Satellite Clock Error</b> — Atomic clock ki minute inaccuracy</li>
+      <li><b>Orbital Error</b> — Satellite predicted orbit se thoda alag</li>
+      <li><b>Atmospheric Error</b> — Ionosphere/Troposphere mein signal delay</li>
+      <li><b>Multipath</b> — Signal buildings se reflect hokar aata hai</li>
+    </ul>
+    <div class="tip">GLONASS (Russia) = GPS ka Russian equivalent. 24 satellites. GPS+GLONASS receiver zyada accurate hota hai.</div>
+  </div>
+</div>
+
+<!-- ─── Vectorization & Digitization ─── -->
+<div class="section-label">Data Conversion</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u3-icon">✏️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'23 Q3e · Nov'25 Q3d</div>
+      <div class="q-title">Digitization aur Vectorization kya hai?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Digitization</b>Paper map ko screen pe tablet/mouse se manually trace karke digital vector data banana.</div>
+    <div class="def"><b>Vectorization</b>Scanned raster image ko automatically vector features mein convert karna using software.</div>
+    <div class="tbl"><table>
+      <tr><th>Feature</th><th>Digitization</th><th>Vectorization</th></tr>
+      <tr><td>Method</td><td>Manual tracing</td><td>Automatic (software)</td></tr>
+      <tr><td>Accuracy</td><td>Operator-dependent</td><td>Depends on image quality</td></tr>
+      <tr><td>Speed</td><td>Slow</td><td>Fast</td></tr>
+    </table></div>
+    <p><b>Vector cleanup operations (Apr'25 Q3d):</b></p>
+    <ul>
+      <li><b>Sliver Polygons</b> — Overlay ke baad choti unwanted polygons → delete</li>
+      <li><b>Dangling Nodes</b> — Lines jo kisi se connected nahi → snap/fix</li>
+      <li><b>Overshoot/Undershoot</b> — Lines jo intersection se zyada/kam hain → trim/extend</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ─── Trend Surface ─── -->
+<div class="section-label">Interpolation Methods</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u3-icon">📈</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q3d · Apr'25 Q3e</div>
+      <div class="q-title">Trend Surface Fitting kya hai?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Trend Surface Fitting</b>Scattered data points pe mathematical polynomial surface fit karna jo overall data trend represent kare.</div>
+    <div class="code">Formula (1st order/linear):
+Z = a₀ + a₁X + a₂Y
+
+Example — Rainfall Stations:
+Station | X | Y | Rainfall(mm)
+A       | 0 | 0 | 120
+B       | 5 | 0 | 110
+C       | 0 | 5 | 130
+Trend: West→East mein rainfall decrease ho raha hai
+→ Unknown point (3,3) ka rainfall ≈ 118mm estimate kar sakte hain</div>
+    <ul>
+      <li>Higher order polynomial = more complex surface</li>
+      <li>Use: Groundwater level, temperature distribution prediction</li>
+    </ul>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u3-icon">🔮</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q3f · Apr'23 Q3f · Nov'25 Q3f</div>
+      <div class="q-title">Kriging kya hai? Interpolation explain karo. <span class="freq med">📌 Med</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Interpolation</b>Known data points se unknown locations ki values estimate karna — continuous surfaces banana.</div>
+    <div class="def"><b>Kriging</b>Geostatistical method — nearby points ko weighted average se use karta hai. Closer = more weight.</div>
+    <div class="eg">5 rain gauges: A=120, B=115, C=108, D=125, E=112 mm. Unknown point P ke nearest gauges A(2km) aur D(3km) → Kriging estimate: P ≈ 121mm.</div>
+    <p><b>Other Methods:</b></p>
+    <ul>
+      <li><b>IDW</b> — Inverse Distance Weighting: Closer = more weight. Simple but less accurate than Kriging.</li>
+      <li><b>TIN Triangulation</b> — Data points se triangles → surface. Terrain ke liye popular.</li>
+      <li><b>Spline</b> — Smooth curve fit — minimum curvature surface.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ─── RMS Error ─── -->
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u3-icon">📏</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q3e</div>
+      <div class="q-title">RMS Error se location accuracy kaise measure karte hain?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>RMS (Root Mean Square) Error</b>Measured vs Actual positions ka average error. Map accuracy assess karne ke liye use hota hai.</div>
+    <div class="code">RMS = √[ Σ(error²) / n ]
+
+Control  Actual  Measured  Error  Error²
+Point    X       X
+P1       100     101.2     1.2    1.44
+P2       200     198.8    -1.2    1.44
+P3       300     301.5     1.5    2.25
+P4       400     399.0    -1.0    1.00
+                           Sum =  6.13
+
+RMS = √(6.13 / 4) = √1.53 = 1.24 meters
+→ Positions on average 1.24m galat hain.</div>
+    <div class="eg">GPS 10 known points pe test karo. RMS calculate karo → GPS ki accuracy pata chalti hai!</div>
+  </div>
+</div>
+
+<!-- ─── Accuracy Types ─── -->
+<div class="section-label">Data Quality & Accuracy</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u3-icon">✅</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'25 Q3f · Nov'25 Q3a</div>
+      <div class="q-title">Positional, Attribute, Temporal Accuracy, Lineage aur Completeness explain karo.</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="tbl"><table>
+      <tr><th>Element</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td><b>Positional</b></td><td>Location kitni correct hai</td><td>GPS ±2m accuracy</td></tr>
+      <tr><td><b>Attribute</b></td><td>Non-spatial data correct hai?</td><td>"Highway" correctly labeled</td></tr>
+      <tr><td><b>Temporal</b></td><td>Data up-to-date hai?</td><td>2023 ka flood map still valid?</td></tr>
+      <tr><td><b>Lineage</b></td><td>Data kahan se aaya?</td><td>"2020 census, QGIS se processed"</td></tr>
+      <tr><td><b>Completeness</b></td><td>Kuch missing toh nahi?</td><td>Saari roads mapped hain?</td></tr>
+    </table></div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u3-icon">📡</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q3d · Apr'25 —</div>
+      <div class="q-title">Satellite-based positioning kya hai?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <p><b>GNSS (Global Navigation Satellite System)</b> systems:</p>
+    <ul>
+      <li><b>GPS</b> (USA) — 24+ satellites, WGS84 datum</li>
+      <li><b>GLONASS</b> (Russia) — 24 satellites, PZ-90 datum</li>
+      <li><b>Galileo</b> (Europe) — 30 satellites (civilian focus)</li>
+      <li><b>NavIC</b> (India) — 7 satellites, India region focus</li>
+    </ul>
+    <p><b>Issues in combining data from multiple sources (Nov'19 Q3e):</b></p>
+    <ul>
+      <li><b>Scale differences</b> — 1:25000 vs 1:50000 maps</li>
+      <li><b>Different datums</b> — Everest vs WGS84</li>
+      <li><b>Different formats</b> — Shapefile vs GeoJSON</li>
+      <li><b>Temporal mismatch</b> — 2010 data vs 2023 data</li>
+    </ul>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <a href="index.html" class="bn-btn home"><span>🏠</span></a>
+  <a href="unit1.html" class="bn-btn"><span>🌍</span>Unit 1</a>
+  <a href="unit2.html" class="bn-btn"><span>🗄️</span>Unit 2</a>
+  <a href="unit4.html" class="bn-btn"><span>🔬</span>Unit 4</a>
+  <a href="unit5.html" class="bn-btn"><span>🗺️</span>Unit 5</a>
+</div>
+
+<script>
+function toggle(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>

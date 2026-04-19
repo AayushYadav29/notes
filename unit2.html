@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"/>
+<title>Unit 2 – GIS Architecture & Data</title>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+.u2-badge { background: rgba(168,85,247,0.15); color: var(--a2); }
+.u2-h1 { background: linear-gradient(135deg,#fff,var(--a2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.u2-icon { background: rgba(168,85,247,0.12); }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="index.html">🏠 Home</a>
+  <span class="divider">/</span>
+  <span class="current">Unit 2</span>
+</div>
+
+<div class="unit-hero">
+  <span class="unit-badge u2-badge">Unit 2 · Architecture & Data</span>
+  <h1 class="u2-h1">GIS Architecture & Data Models</h1>
+  <p>Functional components, DBMS, Vector vs Raster, Relational Model, SDI, Data Capture</p>
+</div>
+
+<!-- ─── Functional Components ─── -->
+<div class="section-label">GIS Architecture</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u2-icon">⚙️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q2a · Nov'19 Q2a · Apr'25 Q2b · Nov'25 Q2e</div>
+      <div class="q-title">GIS ke functional components kya hain? Koi bhi 2 explain karo. <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <p><b>5 Functional Components:</b></p>
+    <ul>
+      <li><b>Data Input</b> — GPS, satellite, digitization se data lena</li>
+      <li><b>Data Storage &amp; Management</b> — Database mein organized store karna</li>
+      <li><b>Data Manipulation &amp; Analysis</b> — Buffer, overlay, network analysis</li>
+      <li><b>Data Output</b> — Maps, reports, PDF export karna</li>
+      <li><b>User Interface</b> — QGIS/ArcGIS jaisa GUI for interaction</li>
+    </ul>
+    <p><b>Detail — Data Input:</b></p>
+    <ul>
+      <li>Primary: GPS, remote sensing, field survey</li>
+      <li>Secondary: Scanning paper maps, import existing datasets</li>
+    </ul>
+    <p><b>Detail — Data Storage:</b></p>
+    <ul>
+      <li>DBMS use hota hai (PostGIS, Oracle Spatial)</li>
+      <li>Spatial data (coordinates) + Non-spatial (name, type) dono store</li>
+    </ul>
+    <div class="eg">Road ka spatial data = coordinates. Non-spatial = road name "NH48", speed limit 100 kmph.</div>
+    <div class="tip">Diagram mein 5 components ek cycle mein dikhao: Input → Storage → Analysis → Output → UI → back to Input.</div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u2-icon">🏛️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'23 Q2b · Nov'25 Q2e</div>
+      <div class="q-title">GIS Architecture aur functionality diagram ke saath explain karo.</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="code">GIS Architecture:
+┌─────────────────────────┐
+│      User Interface      │
+├──────────┬──────────────┤
+│  Spatial │  Attribute   │
+│  Data    │  Data (DBMS) │
+├──────────┴──────────────┤
+│     Analysis Engine      │
+├─────────────────────────┤
+│   Data Input / Output    │
+└─────────────────────────┘</div>
+    <ul>
+      <li><b>Top Layer</b> — User interface (GUI/CLI)</li>
+      <li><b>Middle Layer</b> — Spatial DB + Attribute DB linked together</li>
+      <li><b>Analysis Layer</b> — Overlay, buffer, routing functions</li>
+      <li><b>Bottom Layer</b> — Data capture + output (print/export)</li>
+    </ul>
+    <div class="tip">Hardware trends: Cloud computing, Mobile GIS. Software trends: AI-powered analysis, Web GIS (ArcGIS Online).</div>
+  </div>
+</div>
+
+<!-- ─── DBMS ─── -->
+<div class="section-label">DBMS in GIS</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u2-icon">🗄️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q2b · Apr'23 Q2d · Nov'19 Q2e · Apr'25 Q2d · Nov'25 Q2f</div>
+      <div class="q-title">GIS mein DBMS use karne ke reasons kya hain? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>DBMS</b>Database Management System — data ko efficiently store, retrieve aur manage karta hai. E.g. PostgreSQL/PostGIS.</div>
+    <p><b>5 Main Reasons:</b></p>
+    <ul>
+      <li><b>Data Sharing</b> — Multiple users ek hi database access kar sakte hain simultaneously</li>
+      <li><b>Data Integrity</b> — Data accurate aur consistent rahta hai — ek jagah update = everywhere updated</li>
+      <li><b>Redundancy Control</b> — Same data baar baar store nahi hota — storage waste nahi</li>
+      <li><b>Security</b> — Access control — sirf authorized users hi data dekh sakein</li>
+      <li><b>Query Capability</b> — SQL se complex questions: "500m se lambi saari roads kaunsi hain?"</li>
+    </ul>
+    <div class="eg">Bina DBMS: 10 departments ke 10 alag Excel files → ek road rename karo to 10 jagah update karo. DBMS se: ek update = sab automatically correct.</div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u2-icon">🔗</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'23 Q2f · Nov'25 Q2b</div>
+      <div class="q-title">GIS aur DBMS ko link kaise karte hain?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <ul>
+      <li>GIS software har spatial feature ko ek unique <b>Feature ID</b> deta hai</li>
+      <li>Same Feature ID DBMS table mein attribute data se linked hoti hai</li>
+      <li>Map pe road click karo → GIS Feature ID se DBMS query → attributes display</li>
+    </ul>
+    <div class="code">Spatial DB:          Attribute DB (DBMS):
+FeatureID | Geometry  FeatureID | Name    | Length
+R001      | (coords)  R001      | NH48    | 250 km
+R002      | (coords)  R002      | SH4     | 80 km
+          ↑_________↑ (Linked by FeatureID)</div>
+    <div class="tip">Linking = Spatial layer + Attribute table ko ek common key se join karna. Yahi GIS ka core concept hai!</div>
+  </div>
+</div>
+
+<!-- ─── Vector vs Raster ─── -->
+<div class="section-label">Data Representation</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u2-icon">📊</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q2e · Apr'23 Q2c · Nov'19 Q2c · Apr'25 Q2c · Nov'25 Q2d</div>
+      <div class="q-title">Vector data aur Raster data mein kya farq hai? <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="tbl"><table>
+      <tr><th>Feature</th><th>Vector</th><th>Raster</th></tr>
+      <tr><td>Representation</td><td>Points, Lines, Polygons</td><td>Grid cells (pixels)</td></tr>
+      <tr><td>Data stored</td><td>Coordinates</td><td>Cell values</td></tr>
+      <tr><td>Accuracy</td><td>High — precise</td><td>Limited by cell size</td></tr>
+      <tr><td>File size</td><td>Small</td><td>Large (high res)</td></tr>
+      <tr><td>Best for</td><td>Discrete features</td><td>Continuous data</td></tr>
+      <tr><td>Example</td><td>Roads, Buildings</td><td>Elevation, Rainfall map</td></tr>
+    </table></div>
+    <div class="eg">Vector: Google Maps ki roads — smooth, precise. Raster: Satellite photo — grid of pixels.</div>
+    <div class="tip">Trick: Vector = Shapes (discrete). Raster = Photos (continuous).</div>
+  </div>
+</div>
+
+<!-- ─── Relational Model ─── -->
+<div class="section-label">Relational Data Model</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u2-icon">🔗</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q2d · Nov'19 Q2d · Apr'23 Q2e · Nov'25 Q2a</div>
+      <div class="q-title">Relational data model kya hai? Example ke saath explain karo. <span class="freq hot">🔥 Hot</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>Relational Model</b>Data tables (relations) mein store hota hai. Tables rows + columns se bani hain. Tables keys se connected hain.</div>
+    <div class="code">Table: Districts          Table: Roads
+DistrictID | Name         RoadID | Name    | DistrictID
+1          | Mumbai       101    | WEH     | 1
+2          | Pune         102    | Expressway | 1
+
+DistrictID = Foreign Key (link between tables)
+Query: "Mumbai ki saari roads?" →
+SELECT * FROM Roads WHERE DistrictID = 1;</div>
+    <p><b>Key Terms:</b></p>
+    <ul>
+      <li><b>Primary Key</b> — Har row ka unique ID (DistrictID)</li>
+      <li><b>Foreign Key</b> — Doosri table ka reference (DistrictID in Roads table)</li>
+      <li><b>SQL</b> — Data query karne ki language</li>
+    </ul>
+    <div class="tip">Spatial querying (Nov'25): "Pune se 10km ke andar kaunse hospitals hain?" = Spatial SQL query!</div>
+  </div>
+</div>
+
+<!-- ─── SDI ─── -->
+<div class="section-label">Spatial Data Infrastructure</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u2-icon">🏗️</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'19 Q2f · Nov'25 —</div>
+      <div class="q-title">Spatial Data Infrastructure (SDI) kya hai?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <div class="def"><b>SDI</b>Framework jo different organizations ke beech geographic data sharing enable karta hai — policies + standards + technology.</div>
+    <p><b>5 Components:</b></p>
+    <ul>
+      <li><b>Data</b> — Road maps, census data, satellite imagery</li>
+      <li><b>Metadata</b> — Data ke baare mein info (kab banaya, accuracy)</li>
+      <li><b>Standards</b> — OGC WMS/WFS — sab compatible ho</li>
+      <li><b>Access Networks</b> — Internet portals (India's Bhuvan)</li>
+      <li><b>People &amp; Policy</b> — Producers, users, policymakers</li>
+    </ul>
+    <div class="eg">ISRO ka Bhuvan portal — satellite images, flood maps, soil data sab free mein ek jagah. Yahi India ka SDI hai!</div>
+  </div>
+</div>
+
+<!-- ─── Data Capture ─── -->
+<div class="section-label">Spatial Data Capture</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u2-icon">📡</div>
+    <div class="q-meta">
+      <div class="q-pyq">Nov'19 Q2b · Apr'25 Q2e · Nov'25 Q2d</div>
+      <div class="q-title">Spatial data capture ke techniques kya hain? <span class="freq med">📌 Med</span></div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <p><b>Primary (Direct) Capture:</b></p>
+    <ul>
+      <li><b>GPS Survey</b> — Field mein GPS le ke points mark karna</li>
+      <li><b>Remote Sensing</b> — Satellite se images (Landsat, IKONOS)</li>
+      <li><b>LiDAR</b> — Laser se precise 3D elevation data</li>
+    </ul>
+    <p><b>Secondary (Indirect) Capture:</b></p>
+    <ul>
+      <li><b>Digitization</b> — Paper map screen pe manually trace karna</li>
+      <li><b>Vectorization</b> — Scanned map ko automatically vector mein convert karna</li>
+      <li><b>Existing Databases</b> — Census data, Survey of India maps import</li>
+    </ul>
+    <p><b>4 Stages of Spatial Data Handling:</b></p>
+    <ul>
+      <li><b>1. Capture</b> → <b>2. Storage</b> → <b>3. Analysis</b> → <b>4. Presentation</b></li>
+    </ul>
+    <div class="eg">Swiggy map: Primary = GPS se restaurant locate karo. Secondary = purana paper ka street map scan karke digital banao.</div>
+  </div>
+</div>
+
+<div class="q-card">
+  <div class="q-header" onclick="toggle(this)">
+    <div class="q-icon u2-icon">💡</div>
+    <div class="q-meta">
+      <div class="q-pyq">Apr'25 Q2a · Nov'25 Q2c</div>
+      <div class="q-title">Software technology hardware se slower kyun develop hoti hai?</div>
+    </div>
+    <div class="q-arrow">▼</div>
+  </div>
+  <div class="q-body">
+    <ul>
+      <li>Hardware doubles in power every ~2 years (Moore's Law)</li>
+      <li>Software development slow hai — testing, debugging, compatibility issues</li>
+      <li>Legacy systems — purane software new hardware pe run nahi karte</li>
+      <li>Complex GIS algorithms ko new hardware ke liye rewrite karna padta hai</li>
+      <li>Training aur adoption time lagta hai</li>
+    </ul>
+    <div class="tip">Justify format: Hardware (exponential growth) vs Software (linear growth). GIS ke case mein: GPU powerful hai lekin GIS software abhi bhi CPU-based hai mostly.</div>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <a href="index.html" class="bn-btn home"><span>🏠</span></a>
+  <a href="unit1.html" class="bn-btn"><span>🌍</span>Unit 1</a>
+  <a href="unit3.html" class="bn-btn"><span>🛰️</span>Unit 3</a>
+  <a href="unit4.html" class="bn-btn"><span>🔬</span>Unit 4</a>
+  <a href="unit5.html" class="bn-btn"><span>🗺️</span>Unit 5</a>
+</div>
+
+<script>
+function toggle(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"/>
+<title>FGIS Notes – All Units</title>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+body { padding-bottom: 20px; }
+.hero {
+  padding: 32px 16px 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero .badge {
+  display: inline-block;
+  background: rgba(79,141,255,0.15);
+  color: var(--a1);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-size: 26px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 30%, var(--a1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 6px;
+}
+.hero p { font-size: 13px; color: var(--muted); margin: 0; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 8px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 4px;
+  text-align: center;
+}
+.stat .num {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--a1);
+  display: block;
+}
+.stat .lbl { font-size: 10px; color: var(--muted); }
+
+.units-list { padding: 16px 10px; display: flex; flex-direction: column; gap: 10px; }
+.unit-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s;
+  position: relative;
+}
+.unit-card:active { background: var(--card2); }
+.unit-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.u1 .unit-icon { background: rgba(79,141,255,0.15); }
+.u2 .unit-icon { background: rgba(168,85,247,0.15); }
+.u3 .unit-icon { background: rgba(16,185,129,0.15); }
+.u4 .unit-icon { background: rgba(245,158,11,0.15); }
+.u5 .unit-icon { background: rgba(239,68,68,0.15); }
+.unit-info { flex: 1; }
+.unit-num { font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 1px; }
+.unit-name { font-size: 14px; font-weight: 700; margin: 2px 0; }
+.unit-sub { font-size: 11px; color: var(--muted); line-height: 1.4; }
+.unit-arrow { color: var(--muted); font-size: 14px; }
+
+.footer { text-align: center; padding: 16px; font-size: 11px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="badge">📚 BSc-IT · Sem VI · FGIS</div>
+  <h1>GIS Notes</h1>
+  <p>PYQ 2019–2025 · Hinglish · Beginner Friendly</p>
+</div>
+
+<div class="stats">
+  <div class="stat"><span class="num">5</span><span class="lbl">Units</span></div>
+  <div class="stat"><span class="num">50+</span><span class="lbl">Topics</span></div>
+  <div class="stat"><span class="num">6</span><span class="lbl">Papers</span></div>
+  <div class="stat"><span class="num">100%</span><span class="lbl">PYQ</span></div>
+</div>
+
+<div class="units-list">
+  <a href="unit1.html" class="unit-card u1">
+    <div class="unit-icon">🌍</div>
+    <div class="unit-info">
+      <div class="unit-num">UNIT 01</div>
+      <div class="unit-name">Introduction to GIS</div>
+      <div class="unit-sub">GIS, GIScience, Models, Objects, Topology, Quad Tree, Temporal</div>
+    </div>
+    <div class="unit-arrow">›</div>
+  </a>
+
+  <a href="unit2.html" class="unit-card u2">
+    <div class="unit-icon">🗄️</div>
+    <div class="unit-info">
+      <div class="unit-num">UNIT 02</div>
+      <div class="unit-name">GIS Architecture & Data</div>
+      <div class="unit-sub">Components, DBMS, Vector vs Raster, Relational Model, SDI</div>
+    </div>
+    <div class="unit-arrow">›</div>
+  </a>
+
+  <a href="unit3.html" class="unit-card u3">
+    <div class="unit-icon">🛰️</div>
+    <div class="unit-info">
+      <div class="unit-num">UNIT 03</div>
+      <div class="unit-name">Coordinate Systems & GPS</div>
+      <div class="unit-sub">Map Projections, GPS, Geoid, Kriging, RMS, Accuracy</div>
+    </div>
+    <div class="unit-arrow">›</div>
+  </a>
+
+  <a href="unit4.html" class="unit-card u4">
+    <div class="unit-icon">🔬</div>
+    <div class="unit-info">
+      <div class="unit-num">UNIT 04</div>
+      <div class="unit-name">Spatial Analysis</div>
+      <div class="unit-sub">Overlay, Classification, Neighborhood, Network, Error</div>
+    </div>
+    <div class="unit-arrow">›</div>
+  </a>
+
+  <a href="unit5.html" class="unit-card u5">
+    <div class="unit-icon">🗺️</div>
+    <div class="unit-info">
+      <div class="unit-num">UNIT 05</div>
+      <div class="unit-name">Visualization & Cartography</div>
+      <div class="unit-sub">Bertin's Variables, Visualization, Terrain, Map Dissemination</div>
+    </div>
+    <div class="unit-arrow">›</div>
+  </a>
+</div>
+<div class="footer">Made for BSc-IT Sem VI · All PYQs 2019–2025 Covered ❤️</div>
+</body>
+</html>
